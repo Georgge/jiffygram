@@ -16,6 +16,9 @@ const StackHome = StackNavigator({
   },
   Commentary: {
     screen: Commentary,
+    navigationOptions: {
+      tabBarVisible: false,
+    },
   },
 });
 
