@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {UnauthenticatedRoutes} from './Components/NotAuthenticated/UnauthenticatedRoutes';
+import {AuthenticatedRoutes} from './Components/Authenticated/AuthenticatedRoutes';
 
 /**
  * Main class
@@ -9,7 +10,7 @@ class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <UnauthenticatedRoutes />
+        <AuthenticatedRoutes />
       </View>
     );
   }

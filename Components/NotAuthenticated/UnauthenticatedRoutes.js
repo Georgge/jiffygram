@@ -1,11 +1,11 @@
 import React from 'react';
-import {Text, View, Button} from 'react-native';
+import {Text, View, Button, StyleSheet} from 'react-native';
 import {StackNavigator} from 'react-navigation';
 
 const SignIn = (props) => {
   const {navigation} = props;
   return (
-    <View>
+    <View style={ styles.container }>
       <Text>Component SignIn</Text>
       <Button
         title="Go SignUp"
@@ -19,7 +19,7 @@ const SignIn = (props) => {
 const SignUp = (props) => {
   const {navigation} = props;
   return (
-    <View>
+    <View style={ styles.container }>
       <Text>Component SignUp</Text>
       <Button
         title="Go SignIn"
@@ -37,6 +37,13 @@ const UnauthenticatedRoutes = StackNavigator({
   },
   SignUp: {
     screen: SignUp,
+  },
+});
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
   },
 });
 
