@@ -8,6 +8,12 @@ class Post extends Component {
       <View>
         <Text> Post </Text>
         <Button
+          title='Autor'
+          onPress={() => {
+            navigation.navigate('Autor');
+          }}
+        />
+        <Button
           title='Comments'
           onPress={() => {
             navigation.navigate('Commentary');

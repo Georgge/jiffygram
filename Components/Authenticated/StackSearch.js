@@ -16,9 +16,6 @@ const StackSearch = StackNavigator({
   },
   Commentary: {
     screen: Commentary,
-    navigationOptions: {
-      tabBarVisible: false,
-    },
   },
 });
 

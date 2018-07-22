@@ -7,13 +7,13 @@ class Home extends Component {
     return (
       <View style={ styles.container }>
         <Text> Home </Text>
-        <Button 
+        <Button
           title='Autor'
           onPress={() => {
             navigation.navigate('Autor');
           }}
         />
-        <Button 
+        <Button
           title='Comments'
           onPress={() => {
             navigation.navigate('Commentary');

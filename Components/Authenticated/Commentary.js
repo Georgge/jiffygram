@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {View, Text, Button} from 'react-native';
 
 class Commentary extends Component {
+  static navigationOptions = {
+    tabBarVisible: false,
+  }
   render() {
     const {navigation} = this.props;
     return (
