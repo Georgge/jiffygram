@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import React, {Component} from 'react';
+import {View, Text, Button} from 'react-native';
+import {connect} from 'react-redux';
 
 class SignUp extends Component {
   render() {
     const {navigation} = this.props;
+    console.log(this.props.number);
     return (
       <View>
-        <Text> textInComponent </Text>
+        <Text> SignUp </Text>
         <Button
           title='SignIn'
           onPress={() => {
@@ -18,4 +20,19 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    number: state.reducerTest,
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    dispatch1: () => {
+      //dispatch(actionCreator);
+    },
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

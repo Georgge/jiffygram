@@ -1,6 +1,6 @@
 import {createStore, combineReducers} from 'redux';
 
-const reducerTest = (state=[], action) => state;
+const reducerTest = (state=[0], action) => state;
 
 const reducers = combineReducers({
   reducerTest,
