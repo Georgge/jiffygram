@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {View, Text, Button} from 'react-native';
+import {View, Text, TextInput, Button} from 'react-native';
 import {connect} from 'react-redux';
+import SignUpForm from './Forms/SignUpForm';
 
 class SignUp extends Component {
   render() {
@@ -9,6 +10,7 @@ class SignUp extends Component {
     return (
       <View>
         <Text> SignUp </Text>
+        <SignUpForm />
         <Button
           title='SignIn'
           onPress={() => {
