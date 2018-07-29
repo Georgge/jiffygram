@@ -18,6 +18,7 @@ const fieldName = (props) => {
         secureTextEntry={
           !!(props.input.name === 'password' || props.input.name === 'confirmation')
         }
+        onBlur={props.input.onBlur}
       />
       {props.meta.touched && props.meta.error && <Text>{props.meta.error}</Text> }
     </View>
