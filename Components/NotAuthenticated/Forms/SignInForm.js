@@ -55,14 +55,16 @@ const SignInForm = (props) => {
     <View>
       <Field name="mail" component={fieldName} ph="mail"/>
       <Field name="password" component={fieldName} ph="password"/>
-      <Button
-        title="Sign In"
-        onPress={
-          props.handleSubmit((values) => {
-            console.log(values);
-          })
-        }
-      />
+      <View style={styles.button}>
+        <Button
+          title="Sign In"
+          onPress={
+            props.handleSubmit((values) => {
+              console.log(values);
+            })
+          }
+        />
+      </View>
     </View>
   );
 };
@@ -73,6 +75,9 @@ const styles = StyleSheet.create({
   },
   error: {
     color: '#ef5350',
+  },
+  button: {
+    marginBottom: 16,
   },
 });
 
