@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
-import {View, Text, TextInput, Button} from 'react-native';
+import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import SignUpForm from './Forms/SignUpForm';
 
 class SignUp extends Component {
   render() {
     const {navigation} = this.props;
-    console.log(this.props.number);
     return (
-      <View>
-        <Text> SignUp </Text>
+      <View style={styles.container}>
         <SignUpForm />
         <Button
           title='SignIn'
@@ -21,6 +19,14 @@ class SignUp extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 16,
+  },
+});
 
 const mapStateToProps = (state, ownProps) => {
   return {

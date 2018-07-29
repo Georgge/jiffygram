@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {View, Text, TextInput, Button} from 'react-native';
+import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
 
 import {Field, reduxForm} from 'redux-form';
 
 const fieldName = (props) => {
   console.log(props);
   return (
-    <View>
+    <View style={styles.textInput}>
       <TextInput
         placeholder={props.ph}
         onChangeText={props.input.onChange}
@@ -20,7 +20,11 @@ const fieldName = (props) => {
         }
         onBlur={props.input.onBlur}
       />
-      {props.meta.touched && props.meta.error && <Text>{props.meta.error}</Text> }
+      {props.meta.touched && props.meta.error && 
+        <Text style={styles.error}>
+          {props.meta.error}
+        </Text>
+      }
     </View>
   );
 };
@@ -51,7 +55,6 @@ const SignInForm = (props) => {
     <View>
       <Field name="mail" component={fieldName} ph="mail"/>
       <Field name="password" component={fieldName} ph="password"/>
-      <Text>Redux Form</Text>
       <Button
         title="Sign In"
         onPress={
@@ -63,6 +66,15 @@ const SignInForm = (props) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  textInput: {
+    marginBottom: 16,
+  },
+  error: {
+    color: '#ef5350',
+  },
+});
 
 export default reduxForm(
   {
