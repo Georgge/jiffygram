@@ -53,7 +53,7 @@ const SignInForm = (props) => {
       <Field name="password" component={fieldName} ph="password"/>
       <Text>Redux Form</Text>
       <Button
-        title="Register"
+        title="Sign In"
         onPress={
           props.handleSubmit((values) => {
             console.log(values);
