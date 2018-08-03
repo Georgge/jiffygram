@@ -4,11 +4,17 @@ import {connect} from 'react-redux';
 import SignUpForm from './Forms/SignUpForm';
 
 class SignUp extends Component {
+  userRegister = (values) => {
+    console.log('registro!!!');
+    console.log(values);
+    this.props.register(values);
+  }
+
   render() {
     const {navigation} = this.props;
     return (
       <View style={styles.container}>
-        <SignUpForm />
+        <SignUpForm register={this.userRegister} />
         <Button
           title='SignIn'
           onPress={() => {
@@ -36,8 +42,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    dispatch1: () => {
-      //dispatch(actionCreator);
+    register: () => {
+      dispatch({type: 'REGISTER', data: values});
     },
   };
 };

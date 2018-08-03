@@ -72,7 +72,8 @@ const SignUpForm = (props) => {
         <Button
           title="Register"
           onPress={
-            props.handleSubmit((values) => {
+            props.handleSubmit(props.register
+            /*  (values) => {
               authentication
               .createUserWithEmailAndPassword(values.mail, values.password)
               .then((success) => {
@@ -86,7 +87,8 @@ const SignUpForm = (props) => {
                 console.log(errorMessage);
                 // ...
               });
-            })
+            }*/
+            )
           }
         />
       </View>

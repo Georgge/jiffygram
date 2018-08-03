@@ -1,13 +1,9 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import {reducer as form} from 'redux-form';
 import createSagaMiddleware from 'redux-saga';
+import primaryFunction from './Sagas/Sagas';
 
 const reducerTest = (state=[0], action) => state;
-
-function* primaryFunction() {
-  // yield ES6
-  console.log('from generated fuction');
-}
 
 const sagaMiddleware = createSagaMiddleware();
 
