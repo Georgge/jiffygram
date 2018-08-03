@@ -42,7 +42,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    register: () => {
+    register: (values) => {
       dispatch({type: 'REGISTER', data: values});
     },
   };
