@@ -20,7 +20,7 @@ const dataBaseLog = ({uid, email, name}) => dataBase.ref(`users/${uid}`).set({
 function* logGenerator(values) {
   try {
     const register = yield call(firebaseRegister, values.data);
-    const {email, uid} = register;
+    const {email, uid} = register.user;
     const {data: {name}} = values;
     console.log('logGenerator');
     console.log(register);

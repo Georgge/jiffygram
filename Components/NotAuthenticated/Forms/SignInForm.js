@@ -4,7 +4,6 @@ import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
 import {Field, reduxForm} from 'redux-form';
 
 const fieldName = (props) => {
-  console.log(props);
   return (
     <View style={styles.textInput}>
       <TextInput
@@ -50,7 +49,6 @@ const validate = (values) => {
 };
 
 const SignInForm = (props) => {
-  console.log(props);
   return (
     <View>
       <Field name="mail" component={fieldName} ph="mail"/>

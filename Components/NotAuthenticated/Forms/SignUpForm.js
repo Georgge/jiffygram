@@ -4,7 +4,6 @@ import {Field, reduxForm} from 'redux-form';
 import {authentication} from '../../../Store/Services/Firebase';
 
 const fieldName = (props) => {
-  console.log(props);
   return (
     <View style={styles.textInput}>
       <TextInput
