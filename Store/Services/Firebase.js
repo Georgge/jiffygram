@@ -16,3 +16,4 @@ import FirebaseKey from './FirebaseConfig';
 firebase.initializeApp(FirebaseKey);
 
 export const authentication = firebase.auth();
+export const dataBase = firebase.database();
