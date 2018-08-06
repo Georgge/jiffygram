@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import SignUpForm from './Forms/SignUpForm';
+import { registerAction } from '../../Store/Actions';
 
 class SignUp extends Component {
   userRegister = (values) => {
@@ -43,7 +44,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     register: (values) => {
-      dispatch({type: 'REGISTER', data: values});
+      dispatch(registerAction(values));
     },
   };
 };
