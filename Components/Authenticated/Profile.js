@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import React, {Component} from 'react';
+import {View, Text, Button} from 'react-native';
+import {authentication} from '../../Store/Services/Firebase';
 
 class Profile extends Component {
   render() {
@@ -7,10 +8,16 @@ class Profile extends Component {
     return (
       <View>
         <Text> Profile </Text>
-        <Button 
+        <Button
           title="Post"
           onPress={() => {
             navigation.navigate('Post');
+          }}
+        />
+        <Button
+          title="Salir"
+          onPress={() => {
+            authentication.signOut();
           }}
         />
       </View>

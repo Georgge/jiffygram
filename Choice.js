@@ -3,6 +3,7 @@ import {Text, View, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {authentication} from './Store/Services/Firebase';
 import {UnauthenticatedRoutes} from './Components/NotAuthenticated/UnauthenticatedRoutes';
+import {AuthenticatedRoutes} from './Components/Authenticated/AuthenticatedRoutes';
 import {establishSessionAction, closeSessionAction} from './Store/Actions';
 
 class Choice extends Component {
@@ -13,7 +14,7 @@ class Choice extends Component {
   render() {
     return (
       <View style={ styles.container }>
-        <UnauthenticatedRoutes />
+        {this.props.user? <AuthenticatedRoutes /> : <UnauthenticatedRoutes />}
       </View>
     );
   }
@@ -21,7 +22,7 @@ class Choice extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    prop: state.prop,
+    user: state.sessionReducer,
   };
 };
 
