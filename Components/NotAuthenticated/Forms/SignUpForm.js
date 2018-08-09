@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     color: '#ef5350',
   },
   button: {
-    marginBottom: 16,
+    marginBottom: 10,
   },
 });
 
@@ -97,4 +97,3 @@ export default reduxForm(
     validate,
   }
 )(SignUpForm);
-

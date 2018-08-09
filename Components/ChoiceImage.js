@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Image, View} from 'react-native';
+import {Button, Image, View, TouchableOpacity} from 'react-native';
 import {ImagePicker} from 'expo';
 
 export default class ChoiceImage extends React.Component {
@@ -11,13 +11,18 @@ export default class ChoiceImage extends React.Component {
     let {image} = this.state;
 
     return (
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Button
-          title="Pick an image from camera roll"
-          onPress={this._pickImage}
-        />
-        {image &&
-          <Image source={{uri: image}} style={{width: 200, height: 200}} />}
+      <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
+        <TouchableOpacity onPress={this._pickImage}>
+          {
+            this.state.image ?  
+            <Image source={{uri: this.state.image}}
+              style={{width: 200, height: 200, borderRadius: 100}} 
+            />:
+            <Image source={require('../assets/user.png')}
+              style={{width: 200, height: 200, borderRadius: 100}} 
+            />
+          }
+        </TouchableOpacity>
       </View>
     );
   }

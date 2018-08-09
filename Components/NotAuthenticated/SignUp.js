@@ -16,12 +16,14 @@ class SignUp extends Component {
       <View style={styles.container}>
         <ChoiceImage />
         <SignUpForm register={this.userRegister} />
-        <Button
-          title='SignIn'
-          onPress={() => {
-            navigation.goBack();
-          }}
-        />
+        <View style={styles.button}>
+          <Button
+            title='SignIn'
+            onPress={() => {
+              navigation.goBack();
+            }}
+          />
+        </View>
       </View>
     );
   }
@@ -29,9 +31,12 @@ class SignUp extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 3,
     justifyContent: 'center',
     paddingHorizontal: 16,
+  },
+  button: {
+    marginBottom: 10,
   },
 });
 
