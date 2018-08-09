@@ -2,12 +2,11 @@ import React, {Component} from 'react';
 import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import SignUpForm from './Forms/SignUpForm';
-import { registerAction } from '../../Store/Actions';
+import {registerAction} from '../../Store/Actions';
+import ChoiceImage from '../ChoiceImage';
 
 class SignUp extends Component {
   userRegister = (values) => {
-    console.log('registro!!!');
-    console.log(values);
     this.props.register(values);
   }
 
@@ -15,6 +14,7 @@ class SignUp extends Component {
     const {navigation} = this.props;
     return (
       <View style={styles.container}>
+        <ChoiceImage />
         <SignUpForm register={this.userRegister} />
         <Button
           title='SignIn'
