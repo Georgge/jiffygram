@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import SignUpForm from './Forms/SignUpForm';
-import {registerAction} from '../../Store/Actions';
+import {registerAction, loadSignUpImageAction, cleanSignUpImageAction} from '../../Store/Actions';
 import ChoiceImage from '../ChoiceImage';
 import CONSTANTS from '../../Store/Constants';
 
@@ -10,6 +10,7 @@ class SignUp extends Component {
   componentWillUnmount() {
     this.props.cleanImage();
   }
+
   userRegister = (values) => {
     this.props.register(values);
   }
@@ -55,11 +56,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     register: (values) => {
       dispatch(registerAction(values));
     },
-    loadImage: (image) => {
-      dispatch({type: CONSTANTS.LOAD_IMAGE_SIGNUP, image: image});
+    loadImage: (values) => {
+      dispatch(loadSignUpImageAction(values));
     },
     cleanImage: () => {
-      dispatch({type: CONSTANTS.CLEAN_IMAGE_SIGNUP});
+      dispatch(cleanSignUpImageAction());
     },
   };
 };
