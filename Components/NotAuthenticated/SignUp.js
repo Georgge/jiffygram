@@ -4,8 +4,12 @@ import {connect} from 'react-redux';
 import SignUpForm from './Forms/SignUpForm';
 import {registerAction} from '../../Store/Actions';
 import ChoiceImage from '../ChoiceImage';
+import CONSTANTS from '../../Store/Constants';
 
 class SignUp extends Component {
+  componentWillUnmount() {
+    this.props.cleanImage();
+  }
   userRegister = (values) => {
     this.props.register(values);
   }
@@ -14,7 +18,7 @@ class SignUp extends Component {
     const {navigation} = this.props;
     return (
       <View style={styles.container}>
-        <ChoiceImage />
+        <ChoiceImage image={this.props.image.image} load={this.props.loadImage}/>
         <SignUpForm register={this.userRegister} />
         <View style={styles.button}>
           <Button
@@ -42,7 +46,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    number: state.reducerTest,
+    image: state.imageSingUpReducer,
   };
 };
 
@@ -50,6 +54,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     register: (values) => {
       dispatch(registerAction(values));
+    },
+    loadImage: (image) => {
+      dispatch({type: CONSTANTS.LOAD_IMAGE_SIGNUP, image: image});
+    },
+    cleanImage: () => {
+      dispatch({type: CONSTANTS.CLEAN_IMAGE_SIGNUP});
     },
   };
 };
