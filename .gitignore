@@ -6,6 +6,9 @@ npm-debug.*
 #FireBase
 Store/Services/FirebaseConfig.js
 
+#Cloudinary
+Store/Services/CloudinaryConfig.js
+
 
 # Created by https://www.gitignore.io/api/linux,reactnative,visualstudiocode
 
