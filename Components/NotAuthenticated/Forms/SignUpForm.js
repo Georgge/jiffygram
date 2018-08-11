@@ -3,7 +3,7 @@ import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
 import {Field, reduxForm} from 'redux-form';
 import {authentication} from '../../../Store/Services/Firebase';
 
-const fieldName = (props) => {
+const fieldName = props => {
   return (
     <View style={styles.textInput}>
       <TextInput
@@ -15,21 +15,34 @@ const fieldName = (props) => {
         }
         autoCapitalize='none'
         secureTextEntry={
-          !!(props.input.name === 'password' || props.input.name === 'confirmation')
+          !!(props.input.name === 'password' ||
+          props.input.name === 'confirmation')
         }
         onBlur={props.input.onBlur}
       />
-      {props.meta.touched && props.meta.error && 
-        <Text style={styles.error}>
-          {props.meta.error}
-        </Text>
+      {props.meta.touched && props.meta.error &&
+        <Text style={styles.error}>{props.meta.error}</Text>
       }
     </View>
   );
 };
 
-const validate = (values) => {
+const fieldImage = props => {
+  return (
+    <View>
+      {
+        props.meta.touched && props.meta.error &&
+        <Text style={styles.error}>{props.meta.error}</Text>
+      }
+    </View>
+  );
+};
+
+const validate = (values, props) => {
   const errors = {};
+  if (!props.image) {
+    errors.image = 'image required';
+  }
   if (!values.name) {
     errors.name = 'name required';
   } else if (values.name.length < 5) {
@@ -63,6 +76,7 @@ const validate = (values) => {
 const SignUpForm = (props) => {
   return (
     <View>
+      <Field name='image' component={fieldImage}/>
       <Field name="name" component={fieldName} ph="name"/>
       <Field name="mail" component={fieldName} ph="mail"/>
       <Field name="password" component={fieldName} ph="password"/>

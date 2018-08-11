@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
+import {blur, change} from 'redux-form';
 import SignUpForm from './Forms/SignUpForm';
-import {registerAction, loadSignUpImageAction, cleanSignUpImageAction} from '../../Store/Actions';
+import {registerAction, loadSignUpImageAction} from '../../Store/Actions';
+import {cleanSignUpImageAction} from '../../Store/Actions';
 import ChoiceImage from '../ChoiceImage';
-import CONSTANTS from '../../Store/Constants';
 
 class SignUp extends Component {
   componentWillUnmount() {
@@ -20,7 +21,7 @@ class SignUp extends Component {
     return (
       <View style={styles.container}>
         <ChoiceImage image={this.props.image.image} load={this.props.loadImage}/>
-        <SignUpForm register={this.userRegister} />
+        <SignUpForm register={this.userRegister} image={this.props.image.image}/>
         <View style={styles.button}>
           <Button
             title='SignIn'
@@ -58,6 +59,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     loadImage: (values) => {
       dispatch(loadSignUpImageAction(values));
+      dispatch(blur('SignUpForm', 'image', Date.now()));
     },
     cleanImage: () => {
       dispatch(cleanSignUpImageAction());
