@@ -13,10 +13,10 @@ const firebaseLogin = values =>
     .signInWithEmailAndPassword(values.mail, values.password)
     .then(success => success);
 
-const dataBaseLog = ({uid, email, name}) => dataBase.ref(`users/${uid}`).set({
+const dataBaseLog = ({uid, email, name, userPicture}) => dataBase.ref(`users/${uid}`).set({
   user_name: name,
   email: email,
-  user_picture: 'https://picsum.photos/200',
+  user_picture: userPicture,
 });
 
 
@@ -36,13 +36,12 @@ const cloudinaryImageLog = ({image}) => {
   const formImage = new FormData();
   formImage.append('upload_preset', CONSTANTS.CLOUDINARY_PRESET);
   formImage.append('file', photo);
-  console.log(formImage);
 
   return fetch(CONSTANTS.CLOUDINARY_NAME, {
     method: 'POST',
     body: formImage,
   })
-  .then((response) => response)
+  .then((response) => response.json())
   .catch((error) => error);
 };
 
@@ -58,11 +57,11 @@ function* sagaRegister(values) {
     const image = yield select(getImage);
     console.log(image);
     const imageUri = yield call(cloudinaryImageLog, image);
-    console.log(imageUri);/*
+    const userPicture = imageUri.secure_url;
     const register = yield call(firebaseRegister, values.data);
     const {email, uid} = register.user;
     const {data: {name}} = values;
-    yield call(dataBaseLog, {uid, email, name}); */
+    yield call(dataBaseLog, {uid, email, name, userPicture});
   } catch (error) {
     console.error(`Register error: ${error}`);
   }
