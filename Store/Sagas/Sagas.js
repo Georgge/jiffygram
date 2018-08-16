@@ -1,5 +1,6 @@
-import {takeEvery, call} from 'redux-saga/effects';
+import {takeEvery, call, select} from 'redux-saga/effects';
 import {authentication, dataBase} from '../Services/Firebase';
+import Frisbee from 'frisbee';
 import CONSTANTS from '../Constants';
 
 const firebaseRegister = values =>
@@ -18,6 +19,33 @@ const dataBaseLog = ({uid, email, name}) => dataBase.ref(`users/${uid}`).set({
   user_picture: 'https://picsum.photos/200',
 });
 
+
+const cloudinaryImageLog = ({image}) => {
+  const {uri, type} = image;
+  const splitName = uri.split('/');
+  const name = [...splitName].pop();
+  const splitType = uri.split('.');
+  const imageType = [...splitType].pop();
+
+  const photo = {
+    uri,
+    type: `${type}/${imageType}`,
+    name,
+  };
+
+  const formImage = new FormData();
+  formImage.append('upload_preset', CONSTANTS.CLOUDINARY_PRESET);
+  formImage.append('file', photo);
+  console.log(formImage);
+
+  return fetch(CONSTANTS.CLOUDINARY_NAME, {
+    method: 'POST',
+    body: formImage,
+  })
+  .then((response) => response)
+  .catch((error) => error);
+};
+
 /**
  * uid = register.user.uid
  * email = register.user.email
@@ -25,10 +53,16 @@ const dataBaseLog = ({uid, email, name}) => dataBase.ref(`users/${uid}`).set({
 
 function* sagaRegister(values) {
   try {
+    // load image
+    const getImage = state => state.imageSingUpReducer;
+    const image = yield select(getImage);
+    console.log(image);
+    const imageUri = yield call(cloudinaryImageLog, image);
+    console.log(imageUri);/*
     const register = yield call(firebaseRegister, values.data);
     const {email, uid} = register.user;
     const {data: {name}} = values;
-    yield call(dataBaseLog, {uid, email, name});
+    yield call(dataBaseLog, {uid, email, name}); */
   } catch (error) {
     console.error(`Register error: ${error}`);
   }
