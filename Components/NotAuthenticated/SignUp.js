@@ -20,8 +20,10 @@ class SignUp extends Component {
     const {navigation} = this.props;
     return (
       <View style={styles.container}>
-        <ChoiceImage image={this.props.image.image} load={this.props.loadImage}/>
-        <SignUpForm register={this.userRegister} image={this.props.image.image}/>
+        <ChoiceImage image={this.props.image.image}
+          load={this.props.loadImage}/>
+        <SignUpForm register={this.userRegister}
+          image={this.props.image.image}/>
         <View style={styles.button}>
           <Button
             title='SignIn'
@@ -66,6 +68,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
   };
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
