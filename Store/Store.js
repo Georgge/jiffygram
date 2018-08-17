@@ -26,11 +26,23 @@ const imageSingUpReducer = (state = {image: null}, action) => {
   }
 };
 
+const imageAddReducer = (state = {image: null}, action) => {
+  switch (action.type) {
+    case CONSTANTS.LOAD_IMAGE_ADD:
+      return {image: action.image};
+    case CONSTANTS.CLEAN_IMAGE_ADD:
+      return {image: null};
+    default:
+      return state;
+  }
+};
+
 const sagaMiddleware = createSagaMiddleware();
 
 const reducers = combineReducers({
   sessionReducer,
   imageSingUpReducer,
+  imageAddReducer,
   form,
 });
 

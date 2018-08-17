@@ -21,10 +21,10 @@ const ChoiceImage = (props) => {
         {
           props.image ?  
           <Image source={{uri: props.image.uri}}
-            style={{width: 200, height: 200, borderRadius: 100}}
+            style={{width: 166, height: 166, borderRadius: 83}}
           />:
           <Image source={require('../assets/user.png')}
-            style={{width: 200, height: 200, borderRadius: 100}}
+            style={{width: 166, height: 166, borderRadius: 83}}
           />
         }
       </TouchableOpacity>

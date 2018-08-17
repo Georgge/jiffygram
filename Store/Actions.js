@@ -28,3 +28,12 @@ export const loadSignUpImageAction = values => ({
 export const cleanSignUpImageAction = () => ({
   type: CONSTANTS.CLEAN_IMAGE_SIGNUP,
 });
+
+export const loadAddImageAction = values => ({
+  type: CONSTANTS.LOAD_IMAGE_ADD,
+  image: values,
+});
+
+export const cleanAddImageAction = () => ({
+  type: CONSTANTS.CLEAN_IMAGE_ADD,
+});
