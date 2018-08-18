@@ -3,7 +3,7 @@ import Add from './Add';
 import GaleryChoice from './GaleryChoice';
 
 const StackAdd = StackNavigator({
-  Home: {
+  Add: {
     screen: Add,
   },
   Choice: {
