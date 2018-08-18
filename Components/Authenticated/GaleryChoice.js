@@ -6,10 +6,8 @@ import {loadAddImageAction} from '../../Store/Actions';
 
 
 class GaleryChoice extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
+  static navigationOptions = {
+    tabBarVisible: false,
   }
 
   render() {
@@ -17,7 +15,8 @@ class GaleryChoice extends Component {
       <View style={styles.container}>
         <View style={styles.image}>
           <ChoiceImage image={this.props.image.image}
-            load={this.props.takeImage} />
+            load={this.props.takeImage}
+            radius />
         </View>
         <View style={styles.text}>
           <Text>Camera Roll</Text>

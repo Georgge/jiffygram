@@ -3,7 +3,7 @@ import {StackHome} from './StackHome';
 import {StackSearch} from './StackSearch';
 import {StackFollow} from './StackFollow';
 import Profile from './Profile';
-import { StackAdd } from './StackAdd';
+import {StackAdd} from './StackAdd';
 
 const AuthenticatedRoutes = TabNavigator(
   {

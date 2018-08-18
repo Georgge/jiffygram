@@ -15,16 +15,20 @@ const ChoiceImage = (props) => {
     }
   };
 
+  const radius = {borderRadius: props.radius? 0: 80};
+  const image = props.radius? require('../assets/gallery.png'): require('../assets/user.png');
+  console.log(image);
+
   return (
     <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
       <TouchableOpacity onPress={_pickImage}>
         {
           props.image ?  
           <Image source={{uri: props.image.uri}}
-            style={{width: 166, height: 166, borderRadius: 83}}
+            style={{width: 166, height: 166, ...radius}}
           />:
-          <Image source={require('../assets/user.png')}
-            style={{width: 166, height: 166, borderRadius: 83}}
+          <Image source={image}
+            style={{width: 166, height: 166, ...radius}}
           />
         }
       </TouchableOpacity>
