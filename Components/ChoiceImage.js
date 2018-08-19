@@ -17,7 +17,6 @@ const ChoiceImage = (props) => {
 
   const radius = {borderRadius: props.radius? 0: 80};
   const image = props.radius? require('../assets/gallery.png'): require('../assets/user.png');
-  console.log(image);
 
   return (
     <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
