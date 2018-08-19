@@ -26,14 +26,6 @@ class GaleryChoice extends Component {
               console.log(values);
             }} />
         </View>
-        <View style={styles.button}>
-          <Button
-            title='Post'
-            onPress={() => {
-              console.log('post');
-            }}
-          />
-        </View>
       </View>
     );
   }
@@ -63,11 +55,6 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 2,
-  },
-  button: {
-    flex: 1,
-    paddingHorizontal: 10,
-    marginBottom: 10,
   },
 });
 
