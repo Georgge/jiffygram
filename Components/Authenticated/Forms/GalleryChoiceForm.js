@@ -51,7 +51,7 @@ const GalleryChoiceForm = (props) => {
       <Field name="comment" component={fieldComment} ph="Image comment" />
       <View style={styles.button}>
         <Button
-          title="Register"
+          title="Post"
           onPress={
             props.handleSubmit(props.register)
           }
