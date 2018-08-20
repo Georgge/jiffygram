@@ -76,12 +76,27 @@ function* sagaLogin(values) {
   }
 }
 
+const firebasePostLog = (imageParameters) =>
+  dataBase.ref('publications/').push({
+    width: imageParameters.width,
+    height: imageParameters.height,
+    secure_url: imageParameters.secure_url,
+  }).then(response => response);
+
 function* uploadPostSaga(values) {
   try {
     const image = yield select(state => state.imageAddReducer);
     console.log(image);
     const response = yield call(cloudinaryImageLog, image);
     console.log(response);
+    const {width, height, secure_url} = response;
+    const imageParameters = {
+      width,
+      height,
+      secure_url,
+    };
+    const logInFirebase = yield call(firebasePostLog, imageParameters);
+    console.log(logInFirebase);
     console.log(values);
   } catch (error) {
     console.log(error);
