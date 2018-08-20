@@ -37,3 +37,8 @@ export const loadAddImageAction = values => ({
 export const cleanAddImageAction = () => ({
   type: CONSTANTS.CLEAN_IMAGE_ADD,
 });
+
+export const uploadPostAction = values => ({
+  type: CONSTANTS.UPLOAD_POST,
+  data: values,
+});

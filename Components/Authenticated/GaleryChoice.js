@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, Button} from 'react-native';
 import {connect} from 'react-redux';
 import {blur} from 'redux-form';
 import ChoiceImage from '../ChoiceImage';
-import {loadAddImageAction} from '../../Store/Actions';
+import {loadAddImageAction, uploadPostAction} from '../../Store/Actions';
 import GalleryChoiceForm from './Forms/GalleryChoiceForm';
 
 
@@ -23,6 +23,7 @@ class GaleryChoice extends Component {
         <View style={styles.text}>
           <GalleryChoiceForm image={this.props.image.image}
             register={(values) =>{
+              this.props.uploadPost(values);
               console.log(values);
             }} />
         </View>
@@ -42,6 +43,9 @@ const mapDispatchToProps = (dispatch) => {
     takeImage: (image) => {
       dispatch(loadAddImageAction(image));
       dispatch(blur('GalleryChoiceForm', 'image', Date.now()));
+    },
+    uploadPost: (values) => {
+      dispatch(uploadPostAction(values));
     },
   };
 };

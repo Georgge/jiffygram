@@ -13,10 +13,11 @@ const firebaseLogin = values =>
     .signInWithEmailAndPassword(values.mail, values.password)
     .then(success => success);
 
-const dataBaseLog = ({uid, email, name, userPicture}) => dataBase.ref(`users/${uid}`).set({
-  user_name: name,
-  email: email,
-  user_picture: userPicture,
+const dataBaseLog = ({uid, email, name, userPicture}) =>
+  dataBase.ref(`users/${uid}`).set({
+    user_name: name,
+    email: email,
+    user_picture: userPicture,
 });
 
 
@@ -75,7 +76,20 @@ function* sagaLogin(values) {
   }
 }
 
+function* uploadPostSaga(values) {
+  try {
+    const image = yield select(state => state.imageAddReducer);
+    console.log(image);
+    const response = yield call(cloudinaryImageLog, image);
+    console.log(response);
+    console.log(values);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export default function* primaryFunction() {
   yield takeEvery(CONSTANTS.REGISTER, sagaRegister);
   yield takeEvery(CONSTANTS.LOGIN, sagaLogin);
+  yield takeEvery(CONSTANTS.UPLOAD_POST, uploadPostSaga);
 }
