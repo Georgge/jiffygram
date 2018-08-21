@@ -1,6 +1,5 @@
 import {takeEvery, call, select} from 'redux-saga/effects';
 import {authentication, dataBase} from '../Services/Firebase';
-import Frisbee from 'frisbee';
 import CONSTANTS from '../Constants';
 
 const firebaseRegister = values =>
@@ -81,23 +80,24 @@ const firebasePostLog = (imageParameters) =>
     width: imageParameters.width,
     height: imageParameters.height,
     secure_url: imageParameters.secure_url,
-  }).then(response => response);
+    comment: imageParameters.comment,
+  })
+  .then(response => response)
+  .catch(error => error);
 
-function* uploadPostSaga(values) {
+function* uploadPostSaga({data}) {
+  console.log(data);
   try {
     const image = yield select(state => state.imageAddReducer);
-    console.log(image);
     const response = yield call(cloudinaryImageLog, image);
-    console.log(response);
     const {width, height, secure_url} = response;
     const imageParameters = {
       width,
       height,
       secure_url,
+      comment: data.comment || '',
     };
     const logInFirebase = yield call(firebasePostLog, imageParameters);
-    console.log(logInFirebase);
-    console.log(values);
   } catch (error) {
     console.log(error);
   }
