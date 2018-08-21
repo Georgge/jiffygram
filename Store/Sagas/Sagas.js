@@ -81,6 +81,7 @@ const firebasePostLog = (imageParameters) =>
     height: imageParameters.height,
     secure_url: imageParameters.secure_url,
     comment: imageParameters.comment,
+    autor: imageParameters.autor,
   })
   .then(response => response)
   .catch(error => error);
@@ -89,6 +90,8 @@ function* uploadPostSaga({data}) {
   console.log(data);
   try {
     const image = yield select(state => state.imageAddReducer);
+    const user = yield select(state => state.sessionReducer);
+    console.log(user);
     const response = yield call(cloudinaryImageLog, image);
     const {width, height, secure_url} = response;
     const imageParameters = {
@@ -96,8 +99,10 @@ function* uploadPostSaga({data}) {
       height,
       secure_url,
       comment: data.comment || '',
+      autor: user.uid,
     };
     const logInFirebase = yield call(firebasePostLog, imageParameters);
+    console.log(logInFirebase);
   } catch (error) {
     console.log(error);
   }

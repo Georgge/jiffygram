@@ -4,12 +4,17 @@ import {connect} from 'react-redux';
 import {blur} from 'redux-form';
 import ChoiceImage from '../ChoiceImage';
 import {loadAddImageAction, uploadPostAction} from '../../Store/Actions';
+import {cleanAddImageAction} from '../../Store/Actions';
 import GalleryChoiceForm from './Forms/GalleryChoiceForm';
 
 
 class GaleryChoice extends Component {
   static navigationOptions = {
     tabBarVisible: false,
+  }
+
+  componentWillUnmount() {
+    this.props.cleanImage();
   }
 
   render() {
@@ -46,6 +51,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     uploadPost: (values) => {
       dispatch(uploadPostAction(values));
+    },
+    cleanImage: (cl) => {
+      dispatch(cleanAddImageAction());
     },
   };
 };
