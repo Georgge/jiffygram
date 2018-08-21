@@ -86,6 +86,10 @@ const firebasePostLog = (imageParameters) =>
   .then(response => response)
   .catch(error => error);
 
+const refAutorPost = ({key, uid}) => dataBase.ref(`autor-post/${uid}`)
+  .update({[key]: true})
+  .then(response => response);
+
 function* uploadPostSaga({data}) {
   console.log(data);
   try {
@@ -102,7 +106,13 @@ function* uploadPostSaga({data}) {
       autor: user.uid,
     };
     const logInFirebase = yield call(firebasePostLog, imageParameters);
-    console.log(logInFirebase);
+    const {key} = logInFirebase;
+    const autorParameters = {
+      key,
+      uid: user.uid,
+    };
+    const responseAutorPost = yield call(refAutorPost, autorParameters);
+    console.log(responseAutorPost);
   } catch (error) {
     console.log(error);
   }
