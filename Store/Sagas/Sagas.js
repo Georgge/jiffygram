@@ -118,8 +118,21 @@ function* uploadPostSaga({data}) {
   }
 }
 
+const getPublicationsFirebase = () =>
+  dataBase.ref('publications/').once('value').then(response => response.val());
+
+function* getPublicationsSaga() {
+  try {
+    const publications = yield call(getPublicationsFirebase);
+    console.log(publications);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export default function* primaryFunction() {
   yield takeEvery(CONSTANTS.REGISTER, sagaRegister);
   yield takeEvery(CONSTANTS.LOGIN, sagaLogin);
   yield takeEvery(CONSTANTS.UPLOAD_POST, uploadPostSaga);
+  yield takeEvery(CONSTANTS.DOWNLOAD_PUBLICATIONS, getPublicationsSaga);
 }

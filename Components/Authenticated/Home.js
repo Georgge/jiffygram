@@ -1,7 +1,13 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
+import {connect} from 'react-redux';
+import {downloadPublicationsAction} from '../../Store/Actions';
 
 class Home extends Component {
+  componentDidMount() {
+    this.props.getPublications();
+  }
+
   render() {
     const {navigation} = this.props;
     return (
@@ -24,11 +30,24 @@ class Home extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    prop: state.prop,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getPublications: () => {
+      dispatch(downloadPublicationsAction());
+    },
+  };
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
 });
 
-export default Home;
-
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
