@@ -46,3 +46,8 @@ export const uploadPostAction = values => ({
 export const downloadPublicationsAction = () => ({
   type: CONSTANTS.DOWNLOAD_PUBLICATIONS,
 });
+
+export const publicationStoreAction = (publications) => ({
+  type: CONSTANTS.ADD_PUBLICATION_STORE,
+  data: publications,
+});

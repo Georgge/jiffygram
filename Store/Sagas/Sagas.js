@@ -1,6 +1,7 @@
-import {takeEvery, call, select} from 'redux-saga/effects';
+import {takeEvery, call, select, put} from 'redux-saga/effects';
 import {authentication, dataBase} from '../Services/Firebase';
 import CONSTANTS from '../Constants';
+import {publicationStoreAction} from '../Actions';
 
 const firebaseRegister = values =>
   authentication
@@ -119,12 +120,24 @@ function* uploadPostSaga({data}) {
 }
 
 const getPublicationsFirebase = () =>
-  dataBase.ref('publications/').once('value').then(response => response.val());
+  dataBase.ref('publications/')
+    .once('value')
+    .then(snapshot =>{
+      let publications = [];
+      snapshot.forEach((childSnapshot) => {
+        const {key} = childSnapshot;
+        let publication = childSnapshot.val();
+        publication.key = key;
+        publications.push(publication);
+      });
+      return publications;
+    }
+  );
 
 function* getPublicationsSaga() {
   try {
     const publications = yield call(getPublicationsFirebase);
-    console.log(publications);
+    yield put(publicationStoreAction(publications));
   } catch (error) {
     console.log(error);
   }

@@ -9,6 +9,7 @@ class Home extends Component {
   }
 
   render() {
+    console.log(this.props.publications);
     const {navigation} = this.props;
     return (
       <View style={ styles.container }>
@@ -32,7 +33,7 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    prop: state.prop,
+    publications: state.publicationsFromFirebase,
   };
 };
 
