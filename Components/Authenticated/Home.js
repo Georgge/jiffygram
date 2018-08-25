@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Button, FlatList, Image, Dimensions} from 'react-native';
+import {View, Text, StyleSheet, Button, FlatList} from 'react-native';
 import {connect} from 'react-redux';
 import {downloadPublicationsAction} from '../../Store/Actions';
+import Post from './Post';
 
 class Home extends Component {
   componentDidMount() {
@@ -15,15 +16,10 @@ class Home extends Component {
       <View style={ styles.container }>
         <FlatList
           data={this.props.publications}
-          renderItem={({item}) => {
-            const {width} = Dimensions.get('window');
-            const factor = item.width / width;
-            const height = item.height / factor;
-            return <Image
-              source={{uri: item.secure_url}}
-              style={{width, height}}
-            />;
-          }}
+          renderItem={({item}) => <Post item={item} /> }
+          ItemSeparatorComponent={() => (
+            <View style={styles.separator}></View>
+          )}
         />
         {/*<Text> Home </Text>
         <Button
@@ -60,6 +56,9 @@ const mapDispatchToProps = (dispatch) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  separator: {
+    paddingVertical: 10,
   },
 });
 

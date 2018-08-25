@@ -1,12 +1,26 @@
-import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import React, {Component} from 'react';
+import {View, Text, Button, Dimensions, Image} from 'react-native';
 
 class Post extends Component {
   render() {
-    const {navigation} = this.props;
+    const {navigation, item} = this.props;
+    const {width} = Dimensions.get('window');
+    const factor = item.width / width;
+    const height = item.height / factor;
     return (
       <View>
-        <Text> Post </Text>
+        <View>
+          <Text>{item.autor}</Text>
+        </View>
+        <Image
+          source={{uri: item.secure_url}}
+          style={{width, height}}
+        />
+        <View>
+          <Text>Likes</Text>
+          <Text>Comments</Text>
+        </View>
+        {/*<Text> Post </Text>
         <Button
           title='Autor'
           onPress={() => {
@@ -18,7 +32,7 @@ class Post extends Component {
           onPress={() => {
             navigation.navigate('Commentary');
           }}
-        />
+        />*/}
       </View>
     );
   }
