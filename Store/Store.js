@@ -40,7 +40,7 @@ const imageAddReducer = (state = {image: null}, action) => {
 const publicationsFromFirebase = (state = [], action) => {
   switch (action.type) {
     case CONSTANTS.ADD_PUBLICATION_STORE:
-      return [...state, action.data];
+      return [...state, ...action.data];
     default:
       return state;
   }
