@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Button, Dimensions, Image} from 'react-native';
+import {View, Text, Button, Dimensions, Image, StyleSheet} from 'react-native';
 
 class Post extends Component {
   render() {
@@ -9,14 +9,14 @@ class Post extends Component {
     const height = item.height / factor;
     return (
       <View>
-        <View>
+        <View style={styles.autor}>
           <Text>{item.autor}</Text>
         </View>
         <Image
           source={{uri: item.secure_url}}
           style={{width, height}}
         />
-        <View>
+        <View style={styles.bottom}>
           <Text>Likes</Text>
           <Text>Comments</Text>
         </View>
@@ -37,5 +37,15 @@ class Post extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  autor: {
+    paddingBottom: 4,
+    paddingHorizontal: 10,
+  },
+  bottom: {
+    paddingHorizontal: 10,
+  },
+});
 
 export default Post;

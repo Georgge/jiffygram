@@ -1,4 +1,4 @@
-import {takeEvery, call, select, put} from 'redux-saga/effects';
+import {takeEvery, call, select, put, all} from 'redux-saga/effects';
 import {authentication, dataBase} from '../Services/Firebase';
 import CONSTANTS from '../Constants';
 import {publicationStoreAction} from '../Actions';
@@ -134,9 +134,17 @@ const getPublicationsFirebase = () =>
     }
   );
 
+const getAutor = (uid) =>
+  dataBase
+  .ref(`users/${uid}`)
+  .once('value')
+  .then(snapshot => snapshot.val());
+
 function* getPublicationsSaga() {
   try {
     const publications = yield call(getPublicationsFirebase);
+    const autors = yield all(publications.map(publication => call(getAutor, publication.autor)));
+    console.log(autors);
     yield put(publicationStoreAction(publications));
   } catch (error) {
     console.log(error);
