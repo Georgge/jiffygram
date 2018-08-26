@@ -10,13 +10,13 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.props.publications);
-    const {navigation} = this.props;
+    // console.log(this.props.publications);
+    const {navigation, autors} = this.props;
     return (
       <View style={ styles.container }>
         <FlatList
           data={this.props.publications}
-          renderItem={({item}) => <Post item={item} /> }
+          renderItem={({item, index}) => <Post item={item} autor={autors[index]} /> }
           ItemSeparatorComponent={() => (
             <View style={styles.separator}></View>
           )}
@@ -42,6 +42,7 @@ class Home extends Component {
 const mapStateToProps = (state) => {
   return {
     publications: state.publicationsFromFirebase,
+    autors: state.autorsFromFirebase,
   };
 };
 

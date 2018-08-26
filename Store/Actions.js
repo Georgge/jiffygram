@@ -47,7 +47,12 @@ export const downloadPublicationsAction = () => ({
   type: CONSTANTS.DOWNLOAD_PUBLICATIONS,
 });
 
-export const publicationStoreAction = (publications) => ({
+export const publicationStoreAction = publications => ({
   type: CONSTANTS.ADD_PUBLICATION_STORE,
   data: publications,
+});
+
+export const addAutorsStoreAction = autors => ({
+  type: CONSTANTS.ADD_AUTORS_STORE,
+  data: autors,
 });

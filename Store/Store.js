@@ -46,9 +46,19 @@ const publicationsFromFirebase = (state = [], action) => {
   }
 };
 
+const autorsFromFirebase = (state = [], action) => {
+  switch (action.type) {
+    case CONSTANTS.ADD_AUTORS_STORE:
+      return [...state, ...action.data];
+    default:
+      return state;
+  }
+};
+
 const sagaMiddleware = createSagaMiddleware();
 
 const reducers = combineReducers({
+  autorsFromFirebase,
   publicationsFromFirebase,
   sessionReducer,
   imageSingUpReducer,
