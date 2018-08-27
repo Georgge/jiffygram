@@ -3,8 +3,14 @@ import {View, Text, StyleSheet, Button, FlatList} from 'react-native';
 import {connect} from 'react-redux';
 import {downloadPublicationsAction} from '../../Store/Actions';
 import Post from './Post';
+import {Icon} from 'native-base';
 
 class Home extends Component {
+  static navigationOptions = {
+    headerLeft: <Icon name='ios-camera-outline' style={{paddingLeft: 10}} />,
+    title: 'Jiffygram',
+    headerRight: <Icon name='ios-send-outline' style={{paddingRight: 10}} />,
+  }
   componentDidMount() {
     this.props.getPublications();
   }
@@ -57,6 +63,7 @@ const mapDispatchToProps = (dispatch) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fafafa',
   },
   separator: {
     paddingVertical: 10,

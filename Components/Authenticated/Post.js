@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, Button, Dimensions, Image, StyleSheet} from 'react-native';
+import {Icon} from 'native-base';
 
 class Post extends Component {
   render() {
@@ -20,8 +21,19 @@ class Post extends Component {
           style={{width, height}}
         />
         <View style={styles.bottom}>
-          <Text>Likes</Text>
-          <Text>Comments</Text>
+          <View style={styles.iconsContainer}>
+            <View style={styles.icons}>
+              <Icon name='ios-heart-outline' style={styles.icon} />
+              <Icon name='ios-chatbubbles-outline' style={styles.icon} />
+              <Icon name='ios-send-outline' style={styles.icon} />
+            </View>
+            <View>
+              <Icon name='ios-flag-outline' style={styles.icon} />
+            </View>
+          </View>
+          <View style={styles.comments}>
+            <Text>{item.comment}</Text>
+          </View>
         </View>
         {/*<Text> Post </Text>
         <Button
@@ -47,13 +59,26 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   bottom: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 0,
+  },
+  iconsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  icons: {
+    flexDirection: 'row',
+  },
+  icon: {
+    marginHorizontal: 10,
   },
   header: {
     flexDirection: 'row',
     paddingHorizontal: 10,
     paddingVertical: 10,
     alignItems: 'center',
+  },
+  comments: {
+    paddingHorizontal: 10,
   },
 });
 
