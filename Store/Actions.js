@@ -56,3 +56,11 @@ export const addAutorsStoreAction = autors => ({
   type: CONSTANTS.ADD_AUTORS_STORE,
   data: autors,
 });
+
+export const publicationSuccessful = () => ({
+  type: CONSTANTS.PUBLICATION_SUCCESSFUL,
+});
+
+export const publicationError = () => ({
+  type: CONSTANTS.PUBLICATION_ERROR,
+});

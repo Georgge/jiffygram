@@ -55,9 +55,21 @@ const autorsFromFirebase = (state = [], action) => {
   }
 };
 
+const publicationSuccessfulReducer = (state={state: null}, action) => {
+  switch (action.type) {
+    case CONSTANTS.PUBLICATION_SUCCESSFUL:
+      return {state: 'SUCCESSFUL'};
+    case CONSTANTS.PUBLICATION_ERROR:
+      return {state: 'ERROR'};
+    default:
+      return state;
+  }
+};
+
 const sagaMiddleware = createSagaMiddleware();
 
 const reducers = combineReducers({
+  publicationSuccessfulReducer,
   autorsFromFirebase,
   publicationsFromFirebase,
   sessionReducer,

@@ -2,6 +2,7 @@ import {takeEvery, call, select, put, all} from 'redux-saga/effects';
 import {authentication, dataBase} from '../Services/Firebase';
 import CONSTANTS from '../Constants';
 import {publicationStoreAction, addAutorsStoreAction} from '../Actions';
+import {publicationSuccessful, publicationError} from '../Actions';
 
 const firebaseRegister = values =>
   authentication
@@ -114,8 +115,10 @@ function* uploadPostSaga({data}) {
     };
     const responseAutorPost = yield call(refAutorPost, autorParameters);
     console.log(responseAutorPost);
+    yield put(publicationSuccessful());
   } catch (error) {
     console.log(error);
+    yield put(publicationError());
   }
 }
 

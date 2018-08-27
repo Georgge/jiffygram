@@ -17,6 +17,21 @@ class GaleryChoice extends Component {
     this.props.cleanImage();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.publicationState !== nextProps.publicationState) {
+      switch (nextProps.publicationState) {
+        case 'SUCCESSFUL':
+          this.props.navigation.navigate('Home');
+          break;
+        case 'ERROR':
+          console.log('Error!!!');
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -40,6 +55,7 @@ class GaleryChoice extends Component {
 const mapStateToProps = (state) => {
   return {
     image: state.imageAddReducer,
+    publicationState: state.publicationSuccessfulReducer.state,
   };
 };
 
